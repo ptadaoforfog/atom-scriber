@@ -43,7 +43,30 @@ const getAddressTxs = async (address)=>{
   return resp.json()
 }
 
+const getBlockTimestamp = async (ts)=>{
+  const resp = await fetch(`https://mempool.space/api/v1/mining/blocks/timestamp/${ts}`, {
+    "headers": {
+      "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+      "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,zh-CN;q=0.7,zh;q=0.6",
+      "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Google Chrome\";v=\"120\"",
+      "sec-ch-ua-mobile": "?0",
+      "sec-ch-ua-platform": "\"Windows\"",
+      "sec-fetch-dest": "document",
+      "sec-fetch-mode": "navigate",
+      "sec-fetch-site": "none",
+      "sec-fetch-user": "?1",
+      "upgrade-insecure-requests": "1"
+    },
+    "referrerPolicy": "strict-origin-when-cross-origin",
+    "body": null,
+    "method": "GET"
+  });
+
+  return resp.json()
+}
+
 module.exports = {
   getRecommendedFees: getRecommendedFees,
-  getAddressTxs: getAddressTxs
+  getAddressTxs: getAddressTxs,
+  getBlockTimestamp: getBlockTimestamp,
 }

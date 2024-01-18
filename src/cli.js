@@ -16,6 +16,7 @@ const { waitConfirmed } = require('./helper/atom_helper')
 const { acquireLock, releaseLock, isLockActive, hasLock } = require('./utils/file_lock')
 const { MintQueue } = require('./core/mint_queue')
 const { ECPairFactory } = require('ecpair');
+const { waitBlockHeight } = require('./utils/wait-height');
 
 const bitcoin = require('bitcoinjs-lib')
 
@@ -101,6 +102,7 @@ program.command('auto-mint-dft')
   .option('--disablechalk', 'Whether to disable the real-time chalked logging of each hash for Bitwork mining. Improvements mining performance to set this flag')
   .option('--confirmtimeout <number>', 'The timeout wait tx confirm, unit second', '300')
   .option('--repeat', 'Whether repeat mint')
+  .option('--startblockheight <number>', 'Start mint after block height', '0')
   .action(async (ticker, options) => {
     try {
       const walletPath = walletPathResolver();
@@ -117,6 +119,11 @@ program.command('auto-mint-dft')
       let atomicals = new Atomicals(electrumApi);
   
       console.log("options:", JSON.stringify(options, null, 2));
+
+      // wait block height to mint
+      if (options.startblockheight > 0) {
+        await waitBlockHeight(options.startblockheight)
+      }
 
       while(true) {
         try {
@@ -173,6 +180,7 @@ program.command('auto-mint-ditems')
   .option('--disablechalk', 'Whether to disable the real-time chalked logging of each hash for mining. Improvements mining performance to set this flag')
   .option('--confirmtimeout <number>', 'The timeout wait tx confirm, unit second', '300')
   .option('--delay <number>', 'delay time for mint', '300')
+  .option('--startblockheight <number>', 'Start mint after block height', '0')
   .action(async (containerName, manifestDir, options) => {
     try {
       const walletPath = walletPathResolver();
@@ -191,6 +199,11 @@ program.command('auto-mint-ditems')
       const delay = parseInt(options.delay);
       console.log("delay start at:", delay);
       await sleep(delay * 1000)
+
+      // wait block height to mint
+      if (options.startblockheight > 0) {
+        await waitBlockHeight(options.startblockheight)
+      }
 
       const mintQueue = new MintQueue(containerName, manifestDir, async (processingPath)=>{
         const manifestContent = JSON.parse(await fs.readFile(processingPath, 'utf8'));
@@ -305,6 +318,7 @@ program.command('auto-mint-realms')
   .option('--disablechalk', 'Whether to disable the real-time chalked logging of each hash for mining. Improvements mining performance to set this flag')
   .option('--confirmtimeout <number>', 'The timeout wait tx confirm, unit second', '300')
   .option('--delay <number>', 'delay time for mint', '300')
+  .option('--startblockheight <number>', 'Start mint after block height', '0')
   .action(async (realmDir, options) => {
     try {
       const walletPath = walletPathResolver();
@@ -324,6 +338,11 @@ program.command('auto-mint-realms')
       const delay = parseInt(options.delay);
       console.log("delay start at:", delay);
       await sleep(delay * 1000)
+
+      // wait block height to mint
+      if (options.startblockheight > 0) {
+        await waitBlockHeight(options.startblockheight)
+      }
 
       const mintQueue = new MintQueue("realm", realmDir, async (itemFile)=>{
         const manifestContent = JSON.parse(await fs.readFile(itemFile, 'utf8'));
