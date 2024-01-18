@@ -1,0 +1,17 @@
+{
+  "name": "atom-scriber",
+  "version": "1.0.0",
+  "description": "Atom Scriber",
+  "main": "index.js",
+  "scripts": {
+    "cli": "node ./src/cli.js"
+  },
+  "author": "",
+  "license": "MIC",
+  "dependencies": {
+    "@mempool/mempool.js": "^2.3.0",
+    "atomicals-js": "^0.1.58",
+    "commander": "^11.1.0",
+    "dotenv": "^16.3.1"
+  }
+}
