@@ -92,7 +92,7 @@ Auto mint gb2312
 Copy to mint gb2312 item JSON to examples/gb2312.
 
 ```
-yarn cli auto-mint-ditems tcc examples/gb2312 --satsbytelimit=100 --confirmtimeout=300 --delay=0 --disablechalk
+yarn cli auto-mint-ditems gb2312 examples/gb2312 --satsbytelimit=100 --confirmtimeout=300 --delay=0 --disablechalk
 ```
 
 Auto mint realm
