@@ -81,10 +81,10 @@ yarn cli --help
 
 #### 3. Example Commands
 
-Auto mint quark
+Auto mint loot
 
 ```
-yarn cli auto-mint-dft quark --satsbytelimit=100 --confirmtimeout=300
+yarn cli auto-mint-dft loot --satsbytelimit=100 --confirmtimeout=300
 ```
 
 Auto mint gb2312
