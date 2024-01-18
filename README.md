@@ -1,5 +1,5 @@
 # atom-scriber
-Atom Auto Batch Mint
+Atom Auto Batch Mint Tool.
 
 
 ## Install
@@ -19,7 +19,7 @@ yarn install
 
 #See all commands at:
 
-yarn run cli --help
+yarn cli --help
 
 ```
 
@@ -81,7 +81,7 @@ yarn cli --help
 
 #### 3. Example Commands
 
-Auto mint DFT
+Auto mint quark
 
 ```
 yarn cli auto-mint-dft quark --satsbytelimit=100 --confirmtimeout=300
@@ -89,15 +89,15 @@ yarn cli auto-mint-dft quark --satsbytelimit=100 --confirmtimeout=300
 
 Auto mint gb2312
 
-Copy to mint item JSON to examples/gb2312.
+Copy to mint gb2312 item JSON to examples/gb2312.
 
 ```
 yarn cli auto-mint-ditems tcc examples/gb2312 --satsbytelimit=100 --confirmtimeout=300 --delay=0 --disablechalk
 ```
 
-Auto mint realms
+Auto mint realm
 
-Create to mint realm JSON to examples/realm.
+Create to mint realm JSONs in examples/realm.
 
 ```
 yarn cli auto-mint-realms examples/realm --satsbytelimit=100 --confirmtimeout=300 --delay=0 --disablechalk
